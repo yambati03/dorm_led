@@ -2,7 +2,6 @@ from src.strip import Strip
 from src.mic import Mic
 from src.modes import *
 from constants import *
-from web import *
 
 log = Log()
 
