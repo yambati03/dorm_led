@@ -4,15 +4,28 @@ import time
 #--------------ALL PASSIVE MODE CLASSES--------------
 class PassiveMode:
     def __init__(self, strip):
-        self.arr_pixels = [OFF for i in range(0, NUM_LEDS)]
-        self.pixels = strip
+        self.arr_strip = [OFF for i in range(0, NUM_LEDS)]
+        self.strip = strip
 
 class Off(PassiveMode):
-    def __init__(self):
-        super.__init__()
+    def __init__(self, strip):
+        super.__init__(strip)
 
     def animate(self):
-        self.pixels.fill((OFF.r, OFF.g, OFF.b))
+        self.strip.fill(OFF)
+
+class Arm(PassiveMode):
+    def __init__(self, strip):
+        super.__init__(strip)
+
+    def animate(self):
+        for i in range(5):
+            self.strip.fill(ON)
+            self.strip.show()
+            time.sleep(0.05)
+            self.strip.fill(ON)
+            self.strip.show()
+            time.sleep(0.05)
 
 class RainbowRun(PassiveMode):
     def __init__(self, strip):
@@ -20,22 +33,22 @@ class RainbowRun(PassiveMode):
 
     def shift(self):
         for i in range(self.NUM_LEDS - 1, NUM_UPDATE - 1, -1):
-            self.arr_pixels[i] = self.arr_pixels[i - NUM_UPDATE]
+            self.arr_strip[i] = self.arr_strip[i - NUM_UPDATE]
 
     def animate(self):
         color = RED
         while True:
-            self.pixels.shift()
+            self.shift()
             color = color.nextHue()
             for i in range(NUM_UPDATE):
-                self.arr_pixels[i] = color
-            self.pixels.setLEDS(self.arr_pixels)
-            self.pixels.show()
+                self.arr_strip[i] = color
+            self.strip.setLEDS(self.arr_strip)
+            self.strip.show()
             time.sleep(0.03)
 
 #--------------ALL ACTIVE MODE CLASSES--------------
 class ActiveMode:
     def __init__(self, strip, mic):
         self.mic = mic
-        self.arr_pixels = [OFF for i in range(0, NUM_LEDS)]
-        self.pixels = strip
+        self.arr_strip = [OFF for i in range(0, NUM_LEDS)]
+        self.strip = strip

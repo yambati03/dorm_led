@@ -14,6 +14,6 @@ MAGENTA = Color(255, 0, 230)
 OFF = Color(0, 0, 0)
 ON = Color(255, 255, 255)
 
-#LED strip propertiesa
+#LED strip properties
 NUM_LEDS = 150
 NUM_UPDATE = 5
