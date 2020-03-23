@@ -1,6 +1,5 @@
 from src.modes import *
 from constants import *
-from utils.logging import Log
 import neopixel
 import numpy as np
 import time
