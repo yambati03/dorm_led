@@ -7,13 +7,6 @@ class PassiveMode:
         self.arr_strip = [OFF for i in range(0, NUM_LEDS)]
         self.strip = strip
 
-class Off(PassiveMode):
-    def __init__(self, strip):
-        super.__init__(strip)
-
-    def animate(self):
-        self.strip.fill(OFF)
-
 class Arm(PassiveMode):
     def __init__(self, strip):
         super.__init__(strip)
@@ -26,6 +19,20 @@ class Arm(PassiveMode):
             self.strip.fill(ON)
             self.strip.show()
             time.sleep(0.05)
+
+class Off(PassiveMode):
+    def __init__(self, strip):
+        super.__init__(strip)
+
+    def animate(self):
+        self.strip.fill(OFF)
+
+class On(PassiveMode):
+    def __init__(self, strip):
+        super.__init__(strip)
+
+    def animate(self):
+        self.strip.fill(ON)
 
 class RainbowRun(PassiveMode):
     def __init__(self, strip):

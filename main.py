@@ -2,7 +2,7 @@ import board
 from constants import *
 from src.led_controller import LedController
 
-main():
+def main():
     LedController(board.D18, NUM_LEDS)
 
 if __name__ == '__main__':
