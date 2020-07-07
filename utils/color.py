@@ -16,3 +16,6 @@ class Color:
 		r, g, b = colorsys.hsv_to_rgb(h/360, s, v)
 		color = Color(round(r), round(g), round(b))
 		return (color)
+
+	def toTuple(self):
+		return ((self.r, self.g, self.b))

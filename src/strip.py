@@ -1,12 +1,13 @@
 from src.modes import *
 from constants import *
+import board
 import neopixel
 import numpy as np
 import time
 import colorsys
 
 class Strip:
-    def __init__(self, num_leds, pin):
+    def __init__(self, pin, num_leds):
         self.mode = None
         self.num_leds = num_leds
         self.pin = pin
@@ -20,10 +21,10 @@ class Strip:
 
     def setLEDS(self, arr):
         for pixel in range(self.num_leds):
-            self.pixels[pixel] = arr[pixel]
+            self.pixels[pixel] = arr[pixel].toTuple()
 
     def fill(self, color):
-        self.pixels.fill((color.r, color.g, color.b))
+        self.pixels.fill(color.toTuple())
 
     def show(self):
         self.pixels.show()
