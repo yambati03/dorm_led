@@ -12,7 +12,7 @@ class PassiveMode:
     def terminate(self):
         self.running = False
 
-    def animate():
+    def animate(self):
         pass
 
 class Arm(PassiveMode):
@@ -62,8 +62,12 @@ class RainbowRun(PassiveMode):
             time.sleep(0.03)
 
     def animate(self):
-        thread = Thread(target = self.run)
-        thread.start()
+        self.thread = Thread(target = self.run)
+        self.thread.start()
+
+    def terminate(self):
+        self.running = False
+        self.thread.join()
 
 #--------------ALL ACTIVE MODE CLASSES--------------
 class ActiveMode:
