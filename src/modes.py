@@ -44,6 +44,15 @@ class On(PassiveMode):
         self.strip.fill(ON)
         self.strip.show()
 
+class SolidColor(PassiveMode):
+    def __init__(self, strip, color):
+        super().__init__(strip)
+        self.color = color
+
+    def animate(self):
+        self.strip.fill(self.color)
+        self.strip.show()
+
 class RainbowRun(PassiveMode):
     def __init__(self, strip):
         super().__init__(strip)

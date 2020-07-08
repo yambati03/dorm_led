@@ -13,6 +13,10 @@ class LedController:
         self.strip.setMode(Arm(self.strip))
         self.strip.animate()
 
+    def change_brightness(self, b):
+        if 0 < b < 1:
+            self.strip.setBrightness(b)
+
     def change_mode(self, mode_id):
         self.strip.terminate()
         if mode_id == "off":
