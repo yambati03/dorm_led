@@ -34,6 +34,7 @@ class Off(PassiveMode):
 
     def animate(self):
         self.strip.fill(OFF)
+        self.strip.show()
 
 class On(PassiveMode):
     def __init__(self, strip):
@@ -41,6 +42,7 @@ class On(PassiveMode):
 
     def animate(self):
         self.strip.fill(ON)
+        self.strip.show()
 
 class RainbowRun(PassiveMode):
     def __init__(self, strip):
@@ -62,12 +64,8 @@ class RainbowRun(PassiveMode):
             time.sleep(0.03)
 
     def animate(self):
-        self.thread = Thread(target = self.run)
-        self.thread.start()
-
-    def terminate(self):
-        self.running = False
-        self.thread.join()
+        thread = Thread(target = self.run)
+        thread.start()
 
 #--------------ALL ACTIVE MODE CLASSES--------------
 class ActiveMode:

@@ -15,17 +15,17 @@ class LedController:
 
     def change_mode(self, mode_id):
         self.strip.terminate()
-        if mode_id == None:
-            print("recieve empty mode id")
-            return -1
         if mode_id == "off":
             self.strip.setMode(Off(self.strip))
         if mode_id == "on":
             self.strip.setMode(On(self.strip))
         if mode_id == "rainbow_run":
             self.strip.setMode(RainbowRun(self.strip))
-        log.d("Controller", "Mode set to %s" % mode_id)
+        else:
+            log.e("Controller", "recieve invalid mode id")
+            return -1
         self.strip.animate()
+        log.i("Controller", "Mode set to %s" % mode_id)
 
     def off(self):
         self.change_mode("off")
