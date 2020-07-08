@@ -17,12 +17,12 @@ class LedController:
         self.strip.terminate()
         if mode_id == "off":
             self.strip.setMode(Off(self.strip))
-        if mode_id == "on":
+        elif mode_id == "on":
             self.strip.setMode(On(self.strip))
-        if mode_id == "rainbow_run":
+        elif mode_id == "rainbow_run":
             self.strip.setMode(RainbowRun(self.strip))
         else:
-            log.e("Controller", "recieve invalid mode id")
+            log.e("Controller", "recieved invalid mode id %s" % mode_id)
             return -1
         self.strip.animate()
         log.i("Controller", "Mode set to %s" % mode_id)
