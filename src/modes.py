@@ -1,4 +1,5 @@
 from constants import *
+from threading import Thread
 import time
 
 #--------------ALL PASSIVE MODE CLASSES--------------
@@ -6,6 +7,13 @@ class PassiveMode:
     def __init__(self, strip):
         self.arr_strip = [OFF for i in range(0, NUM_LEDS)]
         self.strip = strip
+        self.running = True
+
+    def terminate(self):
+        self.running = False
+
+    def animate():
+        pass
 
 class Arm(PassiveMode):
     def __init__(self, strip):
@@ -42,9 +50,9 @@ class RainbowRun(PassiveMode):
         for i in range(NUM_LEDS - 1, NUM_UPDATE - 1, -1):
             self.arr_strip[i] = self.arr_strip[i - NUM_UPDATE]
 
-    def animate(self):
+    def run(self):
         color = RED
-        while True:
+        while self.running:
             self.shift()
             color = color.nextHue()
             for i in range(NUM_UPDATE):
@@ -52,6 +60,10 @@ class RainbowRun(PassiveMode):
             self.strip.setLEDS(self.arr_strip)
             self.strip.show()
             time.sleep(0.03)
+
+    def animate(self):
+        thread = Thread(target = self.run)
+        thread.start()
 
 #--------------ALL ACTIVE MODE CLASSES--------------
 class ActiveMode:

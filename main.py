@@ -3,7 +3,9 @@ from constants import *
 from src.led_controller import LedController
 
 def main():
-    LedController(board.D18, NUM_LEDS)
+    controller = LedController(board.D18, NUM_LEDS)
+    controller.change_mode("rainbow_run")
+    print("main thread")
 
 if __name__ == '__main__':
     main()

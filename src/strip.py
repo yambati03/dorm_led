@@ -19,6 +19,9 @@ class Strip:
     def animate(self):
         self.mode.animate()
 
+    def terminate(self):
+        self.mode.terminate()
+
     def setLEDS(self, arr):
         for pixel in range(self.num_leds):
             self.pixels[pixel] = arr[pixel].toTuple()
