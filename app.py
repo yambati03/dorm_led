@@ -12,7 +12,7 @@ controller = LedController(board.D18, NUM_LEDS)
 def mode_dropdown():
     if request.method == "POST":
         mode = request.form["selector"]
-        controller.change_mode("mode")
+        controller.change_mode(mode)
 
     modes = ['rainbow_run', 'rainbow_fade', 'off', 'on']
     return render_template('app.html', modes=modes)

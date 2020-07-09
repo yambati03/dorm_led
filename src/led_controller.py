@@ -2,7 +2,7 @@ from src.strip import Strip
 from src.mic import Mic
 from src.modes import *
 from constants import *
-from color import Color
+from utils.color import Color
 from utils.logging import Log
 
 log = Log()

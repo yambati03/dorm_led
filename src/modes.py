@@ -63,6 +63,7 @@ class RainbowFade(PassiveMode):
             color = color.nextHue()
             self.strip.fill(color)
             self.strip.show()
+            time.sleep(0.03)
 
     def animate(self):
         thread = Thread(target = self.run)
