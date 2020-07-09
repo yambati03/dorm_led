@@ -53,6 +53,21 @@ class SolidColor(PassiveMode):
         self.strip.fill(self.color)
         self.strip.show()
 
+class RainbowFade(PassiveMode):
+    def __init__(self, strip):
+        super().__init__(strip)
+
+    def run(self):
+        color = RED
+        while self.running:
+            color = color.nextHue()
+            self.strip.fill(color)
+            self.strip.show()
+
+    def animate(self):
+        thread = Thread(target = self.run)
+        thread.start()
+
 class RainbowRun(PassiveMode):
     def __init__(self, strip):
         super().__init__(strip)
