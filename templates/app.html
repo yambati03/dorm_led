@@ -3,16 +3,42 @@
   <head>
       <meta charset="UTF-8">
       <title>LED Controller</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename= 'css/controller.css') }}">
+      <script>
+        function submit() {
+            document.getElementById("brightness").submit();
+            document.getElementById("switch").submit();
+        }
+      </script>
   </head>
   <body>
     <form action="{{ url_for('mode_dropdown') }}" method="POST">
+      <div class="row">
+        <p class=column>OFF</p>
+        <label class="switch column">
+          {% if request.form['switch']=="on" %}
+               <input name="switch" id="switch" value="on" type="checkbox" onchange="submit()" checked>
+          {% else %}
+               <input name="switch" id="switch" value="on" type="checkbox" onchange="submit()">
+          {% endif %}
+          <span class="slider round"></span>
+        </label>
+        <p class=column>ON</p>
+      </div>
+      <div class="rangecontainer" action="{{ url_for('mode_dropdown') }}" method="POST">
+        <input type="range" min="0" max="100" value="{{ request.form['brightness'] }}" class="range" id="brightness" name="brightness" onchange="submit()">
+      </div><br>
       <select name="selector">
-          {% for mode in modes %}
-          <option value= "{{mode}}" SELECTED>{{mode}}</option>"
-          {% endfor %}
-      </select>
-      <input type="color" name="color" value="#ff0000"><br><br>
-      <input type="submit" value="Update">
+        {% for mode in modes %}
+          {% if mode==default_mode %}
+               <option value="{{mode}}" selected>{{mode}}</option>
+          {% else %}
+               <option value="{{mode}}">{{mode}}</option>
+          {% endif %}
+        {% endfor %}
+      </select><br>
+      <input type="color" name="color" value="{{ request.form['color'] }}">
+      <input type="submit" value="Update Mode" class="button">
     </form>
   </body>
 </html>
