@@ -13,8 +13,9 @@
   </head>
   <body>
     <form action="{{ url_for('mode_dropdown') }}" method="POST">
+
       <div class="row">
-        <p class=column>OFF</p>
+        <p class=column>Off</p>
         <label class="switch column">
           {% if request.form['switch']=="on" %}
                <input name="switch" id="switch" value="on" type="checkbox" onchange="submit()" checked>
@@ -23,11 +24,15 @@
           {% endif %}
           <span class="slider round"></span>
         </label>
-        <p class=column>ON</p>
-      </div>
+        <p class=column>On</p>
+      </div><br>
+
+      <label>Brightness</label>
       <div class="rangecontainer" action="{{ url_for('mode_dropdown') }}" method="POST">
         <input type="range" min="0" max="100" value="{{ request.form['brightness'] }}" class="range" id="brightness" name="brightness" onchange="submit()">
       </div><br>
+
+      <label>Modes</label>
       <select name="selector">
         {% for mode in modes %}
           {% if mode==default_mode %}
@@ -36,9 +41,11 @@
                <option value="{{mode}}">{{mode}}</option>
           {% endif %}
         {% endfor %}
-      </select><br>
-      <input type="color" name="color" value="{{ request.form['color'] }}">
+      </select>
+      <input type="color" name="color" value="{{ request.form['color'] }}"><br><br>
+
       <input type="submit" value="Update Mode" class="button">
+
     </form>
   </body>
 </html>

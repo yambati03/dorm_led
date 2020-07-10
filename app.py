@@ -23,6 +23,7 @@ def mode_dropdown():
         brightness = request.form["brightness"]
         switch = request.form.get("switch")
 
+        controller.change_brightness(float(brightness) / 100)
         if switch == "on":
             if mode == 'solid_color':
                 color = hex_to_rgb(color)
@@ -31,7 +32,6 @@ def mode_dropdown():
                 controller.change_mode(mode)
         else:
             controller.change_mode("off")
-        controller.change_brightness(int(brightness) / 100)
 
     modes = ['rainbow_run', 'rainbow_fade', 'solid_color']
     return render_template('app.html', modes=modes, default_mode=mode)

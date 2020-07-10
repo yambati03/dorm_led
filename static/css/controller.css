@@ -4,7 +4,10 @@ body {
   background-color: #121212;
   color: white;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 600;
+  font-size: 14px;
+  max-width: 40%;
+  margin: auto;
+  padding: 20px
 }
 
 p {
@@ -94,19 +97,13 @@ input:checked + .slider:before {
 .range {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 50%; /* Full-width */
+  width: 100%; /* Full-width */
   height: 15px; /* Specified height */
   border-radius: 5px;
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
-}
-
-/* Mouse-over effects */
-.range:hover {
-  opacity: 1; /* Fully shown on mouse-over */
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
@@ -116,7 +113,7 @@ input:checked + .slider:before {
   border-radius: 50%;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: #2196F3; /* Green background */
+  background: white; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
@@ -124,7 +121,7 @@ input:checked + .slider:before {
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
   border-radius: 50%;
-  background: #2196F3; /* Green background */
+  background: white; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
@@ -134,8 +131,9 @@ select {
   border: 0 !important;
   background: #3d3d3d;
   flex: 1;
-  padding: 2px;
+  padding: 8px;
   margin: 10px;
+  font-size: 14px;
   color: #fff;
   cursor: pointer;
 }
